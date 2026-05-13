@@ -1,0 +1,1669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Sydney Taxi — Premium taxi booking in Sydney. Book online, track your ride, pay securely.">
+<meta name="keywords" content="Sydney taxi, book taxi Sydney, airport taxi, premium taxi">
+<title>Sydney Taxi — Premium Ride Booking</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #0a0a0a;
+  --yellow: #F5C518;
+  --yellow-dark: #d4a800;
+  --yellow-light: #FFF8D6;
+  --white: #ffffff;
+  --gray-50: #fafafa;
+  --gray-100: #f4f4f4;
+  --gray-200: #e5e5e5;
+  --gray-400: #a3a3a3;
+  --gray-600: #525252;
+  --gray-800: #262626;
+  --green: #16a34a;
+  --red: #dc2626;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-xl: 32px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.10), 0 2px 6px rgba(0,0,0,0.05);
+  --shadow-lg: 0 16px 48px rgba(0,0,0,0.14), 0 4px 16px rgba(0,0,0,0.06);
+  --shadow-yellow: 0 8px 32px rgba(245,197,24,0.35);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--white);
+  color: var(--black);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── TYPOGRAPHY ─── */
+.serif { font-family: 'DM Serif Display', serif; }
+h1, h2, h3 { font-family: 'DM Serif Display', serif; line-height: 1.15; }
+h1 { font-size: clamp(2.4rem, 5vw, 4rem); }
+h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); }
+h3 { font-size: 1.3rem; }
+p { line-height: 1.7; color: var(--gray-600); }
+
+/* ─── LAYOUT ─── */
+.container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+.section { padding: 96px 0; }
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(10,10,10,0.95);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  height: 72px; display: flex; align-items: center;
+}
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 24px;
+}
+.logo {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none; font-family: 'DM Serif Display', serif;
+  font-size: 1.5rem; color: var(--white);
+}
+.logo-icon {
+  width: 38px; height: 38px; background: var(--yellow);
+  border-radius: 10px; display: flex; align-items: center;
+  justify-content: center; font-size: 1.2rem;
+}
+.nav-links {
+  display: flex; align-items: center; gap: 32px; list-style: none;
+}
+.nav-links a {
+  text-decoration: none; color: rgba(255,255,255,0.7);
+  font-size: 0.9rem; font-weight: 500; letter-spacing: 0.01em;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--yellow); }
+.nav-cta {
+  background: var(--yellow); color: var(--black) !important;
+  padding: 10px 22px; border-radius: 100px;
+  font-weight: 600 !important; font-size: 0.88rem !important;
+  letter-spacing: 0.02em; transition: all 0.2s !important;
+}
+.nav-cta:hover { background: var(--yellow-dark) !important; transform: translateY(-1px); }
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh; background: var(--black);
+  display: flex; align-items: center;
+  position: relative; overflow: hidden;
+  padding-top: 72px;
+}
+.hero-grid-bg {
+  position: absolute; inset: 0; opacity: 0.04;
+  background-image: linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.hero-glow {
+  position: absolute; width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(245,197,24,0.18) 0%, transparent 70%);
+  top: 50%; left: 55%; transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.hero-inner {
+  display: grid; grid-template-columns: 1fr 420px;
+  gap: 64px; align-items: center;
+  width: 100%; max-width: 1180px; margin: 0 auto; padding: 64px 24px;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(245,197,24,0.12); border: 1px solid rgba(245,197,24,0.3);
+  color: var(--yellow); padding: 6px 16px; border-radius: 100px;
+  font-size: 0.82rem; font-weight: 500; letter-spacing: 0.04em;
+  text-transform: uppercase; margin-bottom: 28px;
+  animation: fadeUp 0.6s ease both;
+}
+.hero-title {
+  color: var(--white); margin-bottom: 24px;
+  animation: fadeUp 0.6s 0.1s ease both;
+}
+.hero-title em { color: var(--yellow); font-style: italic; }
+.hero-subtitle {
+  color: rgba(255,255,255,0.55); font-size: 1.05rem;
+  margin-bottom: 40px; max-width: 520px;
+  animation: fadeUp 0.6s 0.2s ease both;
+}
+.hero-stats {
+  display: flex; gap: 40px;
+  animation: fadeUp 0.6s 0.3s ease both;
+}
+.hero-stat-num {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2rem; color: var(--white);
+}
+.hero-stat-label { font-size: 0.8rem; color: rgba(255,255,255,0.4); margin-top: 2px; }
+
+/* ─── BOOKING CARD ─── */
+.booking-card {
+  background: var(--white); border-radius: var(--radius-xl);
+  padding: 32px; box-shadow: var(--shadow-lg);
+  animation: fadeUp 0.7s 0.15s ease both;
+}
+.booking-card-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.4rem; color: var(--black);
+  margin-bottom: 24px;
+}
+.form-group { margin-bottom: 16px; }
+.form-label {
+  display: block; font-size: 0.78rem; font-weight: 600;
+  color: var(--gray-400); text-transform: uppercase;
+  letter-spacing: 0.06em; margin-bottom: 8px;
+}
+.form-input {
+  width: 100%; padding: 13px 16px;
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius-sm);
+  font-family: 'DM Sans', sans-serif; font-size: 0.92rem;
+  color: var(--black); background: var(--gray-50);
+  transition: all 0.2s; outline: none;
+}
+.form-input:focus {
+  border-color: var(--yellow); background: var(--white);
+  box-shadow: 0 0 0 3px rgba(245,197,24,0.15);
+}
+.form-input::placeholder { color: var(--gray-400); }
+.input-with-icon { position: relative; }
+.input-icon {
+  position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+  font-size: 1rem; pointer-events: none;
+}
+.input-with-icon .form-input { padding-left: 42px; }
+.route-connector {
+  display: flex; align-items: center; gap: 12px; margin: 4px 0;
+}
+.route-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  flex-shrink: 0; margin-left: 5px;
+}
+.route-dot.pickup { background: var(--yellow); }
+.route-dot.dropoff { background: var(--black); }
+.route-line {
+  width: 1.5px; height: 20px; background: var(--gray-200);
+  margin-left: 9px;
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+.vehicle-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 8px; margin-bottom: 16px;
+}
+.vehicle-option { display: none; }
+.vehicle-label {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 4px; padding: 12px 8px; border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius-sm); cursor: pointer;
+  transition: all 0.2s; background: var(--gray-50);
+  text-align: center;
+}
+.vehicle-label:hover { border-color: var(--yellow); background: var(--yellow-light); }
+.vehicle-option:checked + .vehicle-label {
+  border-color: var(--yellow); background: var(--yellow-light);
+  box-shadow: 0 0 0 3px rgba(245,197,24,0.2);
+}
+.vehicle-emoji { font-size: 1.5rem; }
+.vehicle-name { font-size: 0.72rem; font-weight: 600; color: var(--black); }
+.vehicle-price { font-size: 0.68rem; color: var(--gray-400); }
+
+.coupon-row {
+  display: flex; gap: 8px; margin-bottom: 16px;
+}
+.coupon-row .form-input { flex: 1; }
+.btn-coupon {
+  padding: 13px 16px; background: var(--gray-100);
+  border: 1.5px solid var(--gray-200); border-radius: var(--radius-sm);
+  font-weight: 600; font-size: 0.85rem; cursor: pointer;
+  transition: all 0.2s; white-space: nowrap; color: var(--black);
+}
+.btn-coupon:hover { background: var(--yellow); border-color: var(--yellow); }
+
+.fare-estimate {
+  background: var(--gray-50); border-radius: var(--radius-sm);
+  padding: 16px; margin-bottom: 20px; display: none;
+}
+.fare-row {
+  display: flex; justify-content: space-between;
+  font-size: 0.85rem; padding: 4px 0; color: var(--gray-600);
+}
+.fare-total {
+  display: flex; justify-content: space-between;
+  padding-top: 10px; margin-top: 8px;
+  border-top: 1.5px solid var(--gray-200);
+  font-weight: 700; font-size: 1rem; color: var(--black);
+}
+
+.btn-book {
+  width: 100%; padding: 16px;
+  background: var(--yellow); color: var(--black);
+  border: none; border-radius: var(--radius-sm);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem; font-weight: 700;
+  cursor: pointer; transition: all 0.25s;
+  letter-spacing: 0.01em;
+  box-shadow: var(--shadow-yellow);
+}
+.btn-book:hover { background: var(--yellow-dark); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(245,197,24,0.45); }
+.btn-book:active { transform: translateY(0); }
+
+/* ─── FEATURES ─── */
+.features-section { background: var(--gray-50); }
+.features-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 28px; margin-top: 56px;
+}
+.feature-card {
+  background: var(--white); border-radius: var(--radius-lg);
+  padding: 32px; border: 1px solid var(--gray-100);
+  transition: all 0.3s;
+}
+.feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--yellow);
+}
+.feature-icon {
+  width: 52px; height: 52px; background: var(--yellow-light);
+  border-radius: var(--radius-sm); display: flex; align-items: center;
+  justify-content: center; font-size: 1.5rem; margin-bottom: 20px;
+}
+.feature-title { font-size: 1.1rem; margin-bottom: 10px; }
+
+/* ─── FLEET ─── */
+.fleet-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 20px; margin-top: 56px;
+}
+.fleet-card {
+  border-radius: var(--radius-md); overflow: hidden;
+  border: 1px solid var(--gray-100);
+  transition: all 0.3s;
+}
+.fleet-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.fleet-img {
+  height: 160px; background: var(--gray-100);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 3rem;
+}
+.fleet-info { padding: 20px; }
+.fleet-name { font-weight: 700; font-size: 1rem; margin-bottom: 4px; }
+.fleet-detail { font-size: 0.82rem; color: var(--gray-400); }
+.fleet-price {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.3rem; color: var(--black); margin-top: 12px;
+}
+.fleet-meta { font-size: 0.78rem; color: var(--gray-400); }
+
+/* ─── HOW IT WORKS ─── */
+.steps-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 32px; margin-top: 56px; position: relative;
+}
+.steps-grid::before {
+  content: ''; position: absolute;
+  top: 32px; left: calc(12.5% + 16px); right: calc(12.5% + 16px);
+  height: 1.5px; background: var(--gray-200);
+}
+.step { text-align: center; }
+.step-num {
+  width: 64px; height: 64px; border-radius: 50%;
+  background: var(--black); color: var(--yellow);
+  font-family: 'DM Serif Display', serif; font-size: 1.4rem;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px; position: relative; z-index: 1;
+  border: 3px solid var(--white);
+  box-shadow: 0 0 0 2px var(--black);
+}
+.step h3 { font-size: 1.05rem; margin-bottom: 8px; }
+
+/* ─── TESTIMONIALS ─── */
+.testimonials-section { background: var(--black); }
+.section-label-light {
+  font-size: 0.78rem; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--yellow); margin-bottom: 12px;
+}
+.testimonials-section h2 { color: var(--white); }
+.testimonials-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 24px; margin-top: 52px;
+}
+.testimonial-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-md); padding: 28px;
+}
+.stars { color: var(--yellow); font-size: 1rem; margin-bottom: 16px; letter-spacing: 2px; }
+.testimonial-text {
+  color: rgba(255,255,255,0.8); font-size: 0.9rem;
+  line-height: 1.7; margin-bottom: 20px; font-style: italic;
+}
+.testimonial-author { display: flex; align-items: center; gap: 12px; }
+.author-avatar {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--yellow); display: flex; align-items: center;
+  justify-content: center; font-weight: 700; font-size: 0.85rem; color: var(--black);
+}
+.author-name { font-weight: 600; color: var(--white); font-size: 0.9rem; }
+.author-loc { font-size: 0.78rem; color: rgba(255,255,255,0.4); }
+
+/* ─── CTA ─── */
+.cta-section {
+  background: var(--yellow); text-align: center; padding: 96px 24px;
+}
+.cta-section h2 { color: var(--black); margin-bottom: 16px; }
+.cta-section p { color: rgba(0,0,0,0.65); margin-bottom: 36px; font-size: 1.05rem; }
+.btn-cta-dark {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--black); color: var(--white);
+  padding: 16px 36px; border-radius: 100px;
+  font-weight: 700; font-size: 1rem; text-decoration: none;
+  transition: all 0.25s;
+}
+.btn-cta-dark:hover { transform: translateY(-3px); box-shadow: 0 16px 48px rgba(0,0,0,0.25); }
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--black); padding: 72px 0 32px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.footer-grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px; margin-bottom: 56px;
+}
+.footer-brand p { color: rgba(255,255,255,0.45); font-size: 0.88rem; line-height: 1.8; margin-top: 16px; }
+.footer-col h4 {
+  color: rgba(255,255,255,0.35); font-size: 0.72rem;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  font-weight: 600; margin-bottom: 20px;
+  font-family: 'DM Sans', sans-serif;
+}
+.footer-col ul { list-style: none; }
+.footer-col li { margin-bottom: 12px; }
+.footer-col a {
+  color: rgba(255,255,255,0.6); text-decoration: none;
+  font-size: 0.88rem; transition: color 0.2s;
+}
+.footer-col a:hover { color: var(--yellow); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 28px; display: flex;
+  justify-content: space-between; align-items: center;
+}
+.footer-bottom p { color: rgba(255,255,255,0.3); font-size: 0.82rem; }
+.footer-badges { display: flex; gap: 12px; }
+.badge-cert {
+  padding: 6px 14px; border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 100px; font-size: 0.72rem;
+  color: rgba(255,255,255,0.5);
+}
+
+/* ─── MODAL / BOOKING STEPS ─── */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.7);
+  z-index: 200; display: none; align-items: center;
+  justify-content: center; padding: 20px;
+  backdrop-filter: blur(4px);
+}
+.modal-overlay.active { display: flex; }
+.modal {
+  background: var(--white); border-radius: var(--radius-xl);
+  width: 100%; max-width: 560px; max-height: 90vh;
+  overflow-y: auto; animation: scaleIn 0.25s ease;
+}
+.modal-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 28px 32px 0;
+}
+.modal-header h2 { font-size: 1.5rem; }
+.modal-close {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--gray-100); border: none; cursor: pointer;
+  font-size: 1.1rem; display: flex; align-items: center;
+  justify-content: center; transition: all 0.2s;
+}
+.modal-close:hover { background: var(--gray-200); }
+.modal-body { padding: 24px 32px 32px; }
+
+.progress-bar {
+  display: flex; gap: 8px; margin-bottom: 32px;
+}
+.progress-step {
+  flex: 1; height: 4px; border-radius: 2px;
+  background: var(--gray-200); transition: background 0.3s;
+}
+.progress-step.done { background: var(--yellow); }
+
+.step-panel { display: none; }
+.step-panel.active { display: block; }
+
+.summary-row {
+  display: flex; justify-content: space-between;
+  padding: 12px 0; border-bottom: 1px solid var(--gray-100);
+  font-size: 0.9rem;
+}
+.summary-row:last-child { border-bottom: none; }
+.summary-label { color: var(--gray-600); }
+.summary-value { font-weight: 600; color: var(--black); }
+
+/* ─── PAYMENT ─── */
+#stripe-card-element {
+  padding: 14px 16px; border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius-sm); background: var(--gray-50);
+}
+#stripe-card-element.StripeElement--focus {
+  border-color: var(--yellow); background: var(--white);
+  box-shadow: 0 0 0 3px rgba(245,197,24,0.15);
+}
+
+.payment-methods {
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px; margin-bottom: 20px;
+}
+.pm-option { display: none; }
+.pm-label {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 4px; padding: 12px 8px;
+  border: 1.5px solid var(--gray-200); border-radius: var(--radius-sm);
+  cursor: pointer; transition: all 0.2s; background: var(--gray-50);
+}
+.pm-label:hover { border-color: var(--yellow); }
+.pm-option:checked + .pm-label {
+  border-color: var(--yellow); background: var(--yellow-light);
+}
+.pm-icon { font-size: 1.4rem; }
+.pm-name { font-size: 0.75rem; font-weight: 600; }
+
+/* ─── SUCCESS STATE ─── */
+.success-screen {
+  text-align: center; padding: 20px 0 10px;
+}
+.success-icon {
+  width: 80px; height: 80px; background: #dcfce7;
+  border-radius: 50%; display: flex; align-items: center;
+  justify-content: center; font-size: 2.5rem;
+  margin: 0 auto 24px; animation: bounceIn 0.5s ease;
+}
+.booking-ref {
+  background: var(--yellow-light); border: 1px solid var(--yellow);
+  border-radius: var(--radius-sm); padding: 16px; margin: 20px 0;
+  font-family: 'DM Serif Display', serif; font-size: 1.5rem;
+  letter-spacing: 0.05em;
+}
+.tracking-preview {
+  background: var(--gray-50); border-radius: var(--radius-md);
+  padding: 20px; margin: 20px 0;
+}
+.driver-card {
+  display: flex; align-items: center; gap: 16px;
+}
+.driver-avatar {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: var(--yellow); display: flex; align-items: center;
+  justify-content: center; font-size: 1.5rem;
+}
+.driver-info { flex: 1; }
+.driver-name { font-weight: 700; font-size: 1rem; }
+.driver-rating { font-size: 0.82rem; color: var(--gray-400); }
+.driver-car { font-size: 0.82rem; color: var(--gray-600); }
+.driver-eta {
+  text-align: right;
+}
+.eta-time {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.8rem; color: var(--black);
+}
+.eta-label { font-size: 0.75rem; color: var(--gray-400); }
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes bounceIn {
+  0% { transform: scale(0); }
+  60% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+.animate-pulse { animation: pulse 2s infinite; }
+
+/* ─── SECTION LABELS ─── */
+.section-label {
+  font-size: 0.78rem; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--yellow-dark); margin-bottom: 12px;
+  display: block;
+}
+.section-header { text-align: center; max-width: 600px; margin: 0 auto; }
+.section-header p { margin-top: 16px; font-size: 1.05rem; }
+
+/* ─── TRUST BAR ─── */
+.trust-bar {
+  background: var(--yellow); padding: 16px 0;
+}
+.trust-inner {
+  display: flex; align-items: center; justify-content: center;
+  gap: 48px; flex-wrap: wrap;
+}
+.trust-item {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 0.85rem; font-weight: 600; color: var(--black);
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1024px) {
+  .hero-inner { grid-template-columns: 1fr; max-width: 520px; }
+  .hero-inner > *:first-child { text-align: center; }
+  .hero-stats { justify-content: center; }
+  .hero-subtitle { max-width: 100%; text-align: center; }
+  .features-grid { grid-template-columns: 1fr 1fr; }
+  .fleet-grid { grid-template-columns: 1fr 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .hero { padding-top: 72px; }
+  .vehicle-grid { grid-template-columns: repeat(2, 1fr); }
+  .features-grid, .fleet-grid, .steps-grid, .testimonials-grid { grid-template-columns: 1fr; }
+  .steps-grid::before { display: none; }
+  .form-row { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .trust-inner { gap: 24px; }
+  .payment-methods { grid-template-columns: 1fr; }
+}
+
+/* ─── NOTIFICATION TOAST ─── */
+.toast {
+  position: fixed; bottom: 24px; right: 24px; z-index: 300;
+  background: var(--black); color: var(--white);
+  padding: 14px 20px; border-radius: var(--radius-md);
+  font-size: 0.88rem; box-shadow: var(--shadow-lg);
+  transform: translateY(120px); transition: transform 0.35s ease;
+  display: flex; align-items: center; gap: 10px;
+  max-width: 320px;
+}
+.toast.show { transform: translateY(0); }
+.toast-icon { font-size: 1.1rem; }
+
+/* ─── MAP PLACEHOLDER ─── */
+.map-container {
+  width: 100%; height: 200px; border-radius: var(--radius-sm);
+  background: var(--gray-100); position: relative;
+  overflow: hidden; margin-bottom: 16px;
+  display: flex; align-items: center; justify-content: center;
+}
+.map-placeholder { text-align: center; color: var(--gray-400); }
+.map-placeholder .icon { font-size: 2rem; margin-bottom: 8px; }
+.map-placeholder p { font-size: 0.82rem; }
+
+.loading-dots::after {
+  content: ''; animation: dots 1.5s steps(3) infinite;
+}
+@keyframes dots {
+  0% { content: ''; }
+  33% { content: '.'; }
+  66% { content: '..'; }
+  100% { content: '...'; }
+}
+</style>
+</head>
+<body>
+
+<!-- ─── NAVIGATION ─── -->
+<nav role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="#" class="logo" aria-label="Sydney Taxi Home">
+      <div class="logo-icon" aria-hidden="true">🚖</div>
+      Sydney Taxi
+    </a>
+    <ul class="nav-links">
+      <li><a href="#fleet">Fleet</a></li>
+      <li><a href="#how-it-works">How It Works</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="/login">Sign In</a></li>
+      <li><a href="#booking-hero" class="nav-cta" onclick="scrollToBooking(event)">Book Now</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ─── TRUST BAR ─── -->
+<div class="trust-bar" style="margin-top:72px">
+  <div class="trust-inner">
+    <span class="trust-item">✅ NSW Licensed & Insured</span>
+    <span class="trust-item">🏆 4.9★ Rating — 28,000+ Rides</span>
+    <span class="trust-item">🕐 24/7 Available</span>
+    <span class="trust-item">✈️ Airport Specialists</span>
+  </div>
+</div>
+
+<!-- ─── HERO ─── -->
+<section class="hero" id="booking-hero" aria-labelledby="hero-heading">
+  <div class="hero-grid-bg" aria-hidden="true"></div>
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="hero-inner container">
+    <div class="hero-content">
+      <div class="hero-badge">🚖 Sydney's Premium Taxi Service</div>
+      <h1 class="hero-title" id="hero-heading">
+        Your Ride,<br><em>Your Way</em>
+      </h1>
+      <p class="hero-subtitle">
+        Professional, licensed taxi service across Sydney. Airport transfers, corporate travel, 
+        and everyday rides — book in 60 seconds.
+      </p>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-num">28K+</div>
+          <div class="hero-stat-label">Happy Riders</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">4.9★</div>
+          <div class="hero-stat-label">Avg. Rating</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">< 8 min</div>
+          <div class="hero-stat-label">Avg. Pickup</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── QUICK BOOKING FORM ─── -->
+    <div class="booking-card" role="region" aria-label="Quick booking form">
+      <div class="booking-card-title">Book Your Ride</div>
+
+      <div class="form-group">
+        <label class="form-label" for="pickup">Pickup Location</label>
+        <div class="input-with-icon">
+          <span class="input-icon" aria-hidden="true">📍</span>
+          <input
+            type="text" id="pickup" class="form-input"
+            placeholder="e.g. Sydney CBD, Bondi Beach..."
+            autocomplete="off"
+            oninput="handleAddressInput(this, 'pickup')"
+          >
+        </div>
+      </div>
+
+      <div class="route-line" style="margin-left:5px" aria-hidden="true"></div>
+
+      <div class="form-group">
+        <label class="form-label" for="dropoff">Drop-off Location</label>
+        <div class="input-with-icon">
+          <span class="input-icon" aria-hidden="true">🏁</span>
+          <input
+            type="text" id="dropoff" class="form-input"
+            placeholder="e.g. Sydney Airport (SYD)..."
+            autocomplete="off"
+            oninput="handleAddressInput(this, 'dropoff')"
+          >
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group" style="margin-bottom:0">
+          <label class="form-label" for="ride-date">Date</label>
+          <input type="date" id="ride-date" class="form-input" min="">
+        </div>
+        <div class="form-group" style="margin-bottom:0">
+          <label class="form-label" for="ride-time">Time</label>
+          <input type="time" id="ride-time" class="form-input" value="09:00">
+        </div>
+      </div>
+
+      <div class="form-group" style="margin-top:16px">
+        <label class="form-label">Vehicle Type</label>
+        <div class="vehicle-grid" role="group" aria-label="Vehicle type selection">
+          <input type="radio" name="vehicle" id="v-economy" class="vehicle-option" value="economy" checked>
+          <label for="v-economy" class="vehicle-label">
+            <span class="vehicle-emoji">🚗</span>
+            <span class="vehicle-name">Economy</span>
+            <span class="vehicle-price">from $10</span>
+          </label>
+
+          <input type="radio" name="vehicle" id="v-comfort" class="vehicle-option" value="comfort">
+          <label for="v-comfort" class="vehicle-label">
+            <span class="vehicle-emoji">🚙</span>
+            <span class="vehicle-name">Comfort</span>
+            <span class="vehicle-price">from $15</span>
+          </label>
+
+          <input type="radio" name="vehicle" id="v-premium" class="vehicle-option" value="premium">
+          <label for="v-premium" class="vehicle-label">
+            <span class="vehicle-emoji">🏎️</span>
+            <span class="vehicle-name">Premium</span>
+            <span class="vehicle-price">from $25</span>
+          </label>
+
+          <input type="radio" name="vehicle" id="v-suv" class="vehicle-option" value="suv">
+          <label for="v-suv" class="vehicle-label">
+            <span class="vehicle-emoji">🚐</span>
+            <span class="vehicle-name">SUV</span>
+            <span class="vehicle-price">from $20</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Fare Estimate -->
+      <div id="fare-estimate" class="fare-estimate" role="region" aria-label="Fare estimate" aria-live="polite">
+        <div class="fare-row"><span>Base fare</span><span id="est-base">$0.00</span></div>
+        <div class="fare-row"><span id="est-distance-label">Distance (0 km)</span><span id="est-distance">$0.00</span></div>
+        <div class="fare-row"><span id="est-time-label">Time (0 min)</span><span id="est-time">$0.00</span></div>
+        <div class="fare-row" id="est-surcharge-row" style="display:none">
+          <span id="est-surcharge-label">Surcharge</span><span id="est-surcharge">$0.00</span>
+        </div>
+        <div class="fare-row" id="est-discount-row" style="display:none; color: var(--green);">
+          <span>Coupon discount</span><span id="est-discount">-$0.00</span>
+        </div>
+        <div class="fare-total">
+          <span>Estimated total</span>
+          <span id="est-total">$0.00</span>
+        </div>
+        <p style="font-size:0.72rem; color:var(--gray-400); margin-top:8px; text-align:right">
+          Final fare calculated at end of trip
+        </p>
+      </div>
+
+      <!-- Coupon -->
+      <div class="coupon-row">
+        <input type="text" id="coupon-code" class="form-input" placeholder="Promo code (e.g. WELCOME20)" style="text-transform:uppercase">
+        <button class="btn-coupon" onclick="applyCoupon()" type="button">Apply</button>
+      </div>
+
+      <button class="btn-book" onclick="openBookingModal()" type="button" id="book-btn">
+        Get a Ride 🚖
+      </button>
+
+      <p style="text-align:center; font-size:0.72rem; color:var(--gray-400); margin-top:12px;">
+        🔒 Secure payment · No hidden fees · Free cancellation
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FEATURES ─── -->
+<section class="section features-section" id="features" aria-labelledby="features-heading">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Why Choose Us</span>
+      <h2 id="features-heading">Premium service, every ride</h2>
+      <p>We're Sydney's most trusted taxi service — professional drivers, transparent pricing, and a seamless booking experience.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon" aria-hidden="true">📍</div>
+        <h3 class="feature-title">Live GPS Tracking</h3>
+        <p style="font-size:0.9rem">Track your driver in real-time from the moment they accept your ride until you reach your destination.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" aria-hidden="true">💳</div>
+        <h3 class="feature-title">Secure Payments</h3>
+        <p style="font-size:0.9rem">Pay by card, Apple Pay, or Google Pay. All transactions are encrypted and processed securely via Stripe.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" aria-hidden="true">✅</div>
+        <h3 class="feature-title">Licensed Drivers</h3>
+        <p style="font-size:0.9rem">All drivers hold a NSW Taxi Authority card, police clearance, and undergo rigorous background checks.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" aria-hidden="true">💰</div>
+        <h3 class="feature-title">Fixed Fare Option</h3>
+        <p style="font-size:0.9rem">Book airport transfers at a fixed price — no meter surprises. Know your fare before you ride.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" aria-hidden="true">🕐</div>
+        <h3 class="feature-title">Schedule Ahead</h3>
+        <p style="font-size:0.9rem">Book up to 30 days in advance for important trips. Perfect for early morning flights or special events.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" aria-hidden="true">📱</div>
+        <h3 class="feature-title">Instant Confirmation</h3>
+        <p style="font-size:0.9rem">Get instant booking confirmation via SMS and email with driver details and live tracking link.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── HOW IT WORKS ─── -->
+<section class="section" id="how-it-works" aria-labelledby="hiw-heading">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Simple Process</span>
+      <h2 id="hiw-heading">Ride in 4 easy steps</h2>
+      <p>From booking to destination in minutes. It's that simple.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step">
+        <div class="step-num" aria-label="Step 1">1</div>
+        <h3>Enter Locations</h3>
+        <p style="font-size:0.85rem">Enter your pickup and drop-off address using our smart location search.</p>
+      </div>
+      <div class="step">
+        <div class="step-num" aria-label="Step 2">2</div>
+        <h3>Choose Vehicle</h3>
+        <p style="font-size:0.85rem">Select Economy, Comfort, Premium or SUV based on your needs and budget.</p>
+      </div>
+      <div class="step">
+        <div class="step-num" aria-label="Step 3">3</div>
+        <h3>Pay Securely</h3>
+        <p style="font-size:0.85rem">Pay by card or digital wallet. Get instant confirmation with booking reference.</p>
+      </div>
+      <div class="step">
+        <div class="step-num" aria-label="Step 4">4</div>
+        <h3>Track & Ride</h3>
+        <p style="font-size:0.85rem">Watch your driver arrive on the live map. Enjoy your professional ride!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FLEET ─── -->
+<section class="section features-section" id="fleet" aria-labelledby="fleet-heading">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Our Fleet</span>
+      <h2 id="fleet-heading">The right vehicle for every journey</h2>
+      <p>From solo trips to group travel — we have the perfect vehicle for you.</p>
+    </div>
+    <div class="fleet-grid">
+      <div class="fleet-card">
+        <div class="fleet-img" aria-hidden="true">🚗</div>
+        <div class="fleet-info">
+          <div class="fleet-name">Economy Sedan</div>
+          <div class="fleet-detail">Up to 4 passengers · 2 bags</div>
+          <div class="fleet-price">From $10</div>
+          <div class="fleet-meta">Toyota Camry, Hyundai i30 or similar</div>
+        </div>
+      </div>
+      <div class="fleet-card">
+        <div class="fleet-img" aria-hidden="true">🚙</div>
+        <div class="fleet-info">
+          <div class="fleet-name">Comfort Ride</div>
+          <div class="fleet-detail">Up to 4 passengers · 3 bags</div>
+          <div class="fleet-price">From $15</div>
+          <div class="fleet-meta">Camry Hybrid, Kia Stinger or similar</div>
+        </div>
+      </div>
+      <div class="fleet-card">
+        <div class="fleet-img" aria-hidden="true">🏎️</div>
+        <div class="fleet-info">
+          <div class="fleet-name">Premium Luxury</div>
+          <div class="fleet-detail">Up to 4 passengers · 3 bags</div>
+          <div class="fleet-price">From $25</div>
+          <div class="fleet-meta">BMW 5 Series, Mercedes E-Class</div>
+        </div>
+      </div>
+      <div class="fleet-card">
+        <div class="fleet-img" aria-hidden="true">🚐</div>
+        <div class="fleet-info">
+          <div class="fleet-name">SUV / People Mover</div>
+          <div class="fleet-detail">Up to 7 passengers · 5 bags</div>
+          <div class="fleet-price">From $20</div>
+          <div class="fleet-meta">Toyota HiAce, Kia Carnival</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TESTIMONIALS ─── -->
+<section class="section testimonials-section" id="reviews" aria-labelledby="reviews-heading">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label-light">Customer Reviews</span>
+      <h2 id="reviews-heading" style="color:white">What Sydney says about us</h2>
+      <p style="color:rgba(255,255,255,0.5); margin-top:16px">4.9 stars from over 28,000 verified rides</p>
+    </div>
+    <div class="testimonials-grid" role="list">
+      <div class="testimonial-card" role="listitem">
+        <div class="stars" aria-label="5 stars">★★★★★</div>
+        <p class="testimonial-text">"Booked a 5am airport transfer to Sydney Airport. Driver was there 5 minutes early, helped with luggage, and the car was spotless. Absolutely first class service."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" aria-hidden="true">ET</div>
+          <div>
+            <div class="author-name">Emma Thompson</div>
+            <div class="author-loc">Mosman, NSW</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card" role="listitem">
+        <div class="stars" aria-label="5 stars">★★★★★</div>
+        <p class="testimonial-text">"Used Sydney Taxi for our corporate account. The Premium vehicles are exceptional — drivers are professional, punctual, and the booking system is seamless."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" aria-hidden="true">JW</div>
+          <div>
+            <div class="author-name">James Walsh</div>
+            <div class="author-loc">Sydney CBD</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card" role="listitem">
+        <div class="stars" aria-label="4 stars">★★★★★</div>
+        <p class="testimonial-text">"The live tracking is brilliant — I knew exactly where my driver was. Arrived in 6 minutes! The app is so easy to use. My go-to for getting around Sydney."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" aria-hidden="true">SC</div>
+          <div>
+            <div class="author-name">Sophie Chen</div>
+            <div class="author-loc">Bondi, NSW</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA ─── -->
+<section class="cta-section" aria-labelledby="cta-heading">
+  <div class="container">
+    <span class="section-label" style="color: rgba(0,0,0,0.5)">Ready to Ride?</span>
+    <h2 id="cta-heading">Your premium taxi awaits</h2>
+    <p>Use code <strong>WELCOME20</strong> for 20% off your first ride</p>
+    <a href="#booking-hero" class="btn-cta-dark" onclick="scrollAndFill(event)">
+      Book Now — It's Free 🚖
+    </a>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo" style="font-size:1.3rem">
+          <div class="logo-icon">🚖</div>
+          Sydney Taxi
+        </a>
+        <p>Sydney's premium taxi booking platform. Licensed, insured, and trusted by over 28,000 riders across the greater Sydney metropolitan area.</p>
+        <p style="margin-top:12px; font-size:0.78rem">📍 Level 5, 123 George St, Sydney NSW 2000<br>📞 1300 SYDNEY (1300 793 633)<br>✉️ hello@sydneytaxi.com.au</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#">Airport Transfers</a></li>
+          <li><a href="#">Corporate Rides</a></li>
+          <li><a href="#">Wedding Transport</a></li>
+          <li><a href="#">Wheelchair Access</a></li>
+          <li><a href="#">School Runs</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Drive With Us</a></li>
+          <li><a href="#">Safety</a></li>
+          <li><a href="#">Newsroom</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Cookie Policy</a></li>
+          <li><a href="#">Refund Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 Sydney Taxi Pty Ltd · ABN 12 345 678 901 · All rights reserved</p>
+      <div class="footer-badges">
+        <span class="badge-cert">NSW Licensed</span>
+        <span class="badge-cert">PCI Compliant</span>
+        <span class="badge-cert">SSL Secured</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ─── BOOKING MODAL ─── -->
+<div id="booking-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title" onclick="closeOnOverlay(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 id="modal-title">Complete Booking</h2>
+      <button class="modal-close" onclick="closeModal()" aria-label="Close booking modal">✕</button>
+    </div>
+    <div class="modal-body">
+      <!-- Progress -->
+      <div class="progress-bar" role="progressbar" aria-label="Booking steps" aria-valuemin="1" aria-valuemax="3">
+        <div class="progress-step done" id="prog-1"></div>
+        <div class="progress-step" id="prog-2"></div>
+        <div class="progress-step" id="prog-3"></div>
+      </div>
+
+      <!-- Step 1: Review -->
+      <div id="step-1" class="step-panel active">
+        <h3 style="margin-bottom:20px; font-size:1.1rem">Review Your Trip</h3>
+        <div id="trip-summary">
+          <div class="summary-row">
+            <span class="summary-label">📍 Pickup</span>
+            <span class="summary-value" id="sum-pickup">Sydney CBD</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">🏁 Drop-off</span>
+            <span class="summary-value" id="sum-dropoff">Sydney Airport</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">📅 Date & Time</span>
+            <span class="summary-value" id="sum-datetime">Today, 09:00 AM</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">🚗 Vehicle</span>
+            <span class="summary-value" id="sum-vehicle">Economy</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">📏 Est. Distance</span>
+            <span class="summary-value" id="sum-distance">12.4 km</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">⏱ Est. Duration</span>
+            <span class="summary-value" id="sum-duration">24 min</span>
+          </div>
+          <div class="summary-row" style="border-top: 2px solid var(--gray-200); margin-top:4px; padding-top:16px">
+            <span class="summary-label" style="font-weight:700; color:var(--black)">💰 Estimated Fare</span>
+            <span class="summary-value" style="font-family:'DM Serif Display',serif; font-size:1.3rem; color:var(--black)" id="sum-fare">$38.50</span>
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-top:20px">
+          <label class="form-label" for="passengers">Passengers</label>
+          <select id="passengers" class="form-input">
+            <option>1 passenger</option>
+            <option>2 passengers</option>
+            <option>3 passengers</option>
+            <option>4 passengers</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="special-notes">Special Instructions (optional)</label>
+          <textarea id="special-notes" class="form-input" rows="2"
+            placeholder="e.g. I'll be at the main entrance with a pram..."></textarea>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:20px">
+          <input type="checkbox" id="baby-seat" style="width:18px;height:18px;accent-color:var(--yellow)">
+          <label for="baby-seat" style="font-size:0.9rem; cursor:pointer">I need a baby/child seat (+$5)</label>
+        </div>
+
+        <button class="btn-book" onclick="goToStep(2)" type="button">Continue to Payment →</button>
+      </div>
+
+      <!-- Step 2: Payment -->
+      <div id="step-2" class="step-panel">
+        <h3 style="margin-bottom:20px; font-size:1.1rem">Payment Details</h3>
+
+        <div class="form-group">
+          <label class="form-label">Payment Method</label>
+          <div class="payment-methods" role="group" aria-label="Payment method">
+            <input type="radio" name="payment" id="pm-card" class="pm-option" value="card" checked>
+            <label for="pm-card" class="pm-label">
+              <span class="pm-icon">💳</span>
+              <span class="pm-name">Card</span>
+            </label>
+            <input type="radio" name="payment" id="pm-apple" class="pm-option" value="apple_pay">
+            <label for="pm-apple" class="pm-label">
+              <span class="pm-icon">🍎</span>
+              <span class="pm-name">Apple Pay</span>
+            </label>
+            <input type="radio" name="payment" id="pm-google" class="pm-option" value="google_pay">
+            <label for="pm-google" class="pm-label">
+              <span class="pm-icon">🤖</span>
+              <span class="pm-name">Google Pay</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Card form (shown by default) -->
+        <div id="card-form">
+          <div class="form-group">
+            <label class="form-label" for="card-name">Name on Card</label>
+            <input type="text" id="card-name" class="form-input" placeholder="Emma Thompson">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="card-number">Card Number</label>
+            <input type="text" id="card-number" class="form-input" placeholder="1234 5678 9012 3456"
+              maxlength="19" oninput="formatCardNumber(this)" inputmode="numeric">
+          </div>
+          <div class="form-row">
+            <div class="form-group" style="margin-bottom:0">
+              <label class="form-label" for="card-expiry">Expiry</label>
+              <input type="text" id="card-expiry" class="form-input" placeholder="MM / YY"
+                maxlength="7" oninput="formatExpiry(this)">
+            </div>
+            <div class="form-group" style="margin-bottom:0">
+              <label class="form-label" for="card-cvc">CVC</label>
+              <input type="text" id="card-cvc" class="form-input" placeholder="123"
+                maxlength="4" inputmode="numeric">
+            </div>
+          </div>
+        </div>
+
+        <div id="digital-wallet-msg" style="display:none; text-align:center; padding:24px; color:var(--gray-600)">
+          <div style="font-size:2rem; margin-bottom:12px">📱</div>
+          <p style="font-size:0.9rem">You'll be prompted to confirm with your device wallet when you tap "Confirm Booking".</p>
+        </div>
+
+        <div style="background:var(--gray-50); border-radius:var(--radius-sm); padding:16px; margin: 20px 0;">
+          <div class="fare-row"><span>Fare estimate</span><span id="pay-fare">$38.50</span></div>
+          <div class="fare-row" id="pay-baby-row" style="display:none"><span>Baby seat</span><span>$5.00</span></div>
+          <div class="fare-row" id="pay-discount-row" style="display:none; color:var(--green)">
+            <span>Promo discount</span><span id="pay-discount">-$0.00</span>
+          </div>
+          <div class="fare-total">
+            <span>Total charged now</span>
+            <span id="pay-total" style="font-family:'DM Serif Display',serif; font-size:1.2rem">$38.50</span>
+          </div>
+        </div>
+
+        <p style="font-size:0.78rem; color:var(--gray-400); text-align:center; margin-bottom:16px">
+          🔒 256-bit SSL encryption · Powered by Stripe · PCI DSS Level 1
+        </p>
+
+        <div style="display:flex; gap:12px">
+          <button onclick="goToStep(1)" type="button"
+            style="flex:1; padding:14px; background:var(--gray-100); border:none; border-radius:var(--radius-sm); font-weight:600; cursor:pointer; transition:all 0.2s"
+            onmouseover="this.style.background='var(--gray-200)'" onmouseout="this.style.background='var(--gray-100)'">
+            ← Back
+          </button>
+          <button class="btn-book" onclick="confirmBooking()" type="button" style="flex:2" id="confirm-btn">
+            Confirm & Pay 🔒
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 3: Success -->
+      <div id="step-3" class="step-panel">
+        <div class="success-screen">
+          <div class="success-icon" aria-hidden="true">✅</div>
+          <h3 style="font-size:1.4rem; margin-bottom:8px">Booking Confirmed!</h3>
+          <p style="font-size:0.9rem">Your ride has been booked. A confirmation has been sent to your email and phone.</p>
+
+          <div class="booking-ref" role="region" aria-label="Booking reference">
+            <div style="font-size:0.72rem; font-family:'DM Sans',sans-serif; color:var(--gray-400); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:4px">Booking Reference</div>
+            <div id="booking-ref-num">SYD-2024-004821</div>
+          </div>
+
+          <div class="tracking-preview">
+            <div style="font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:var(--gray-400); margin-bottom:16px; text-align:left">Your Driver</div>
+            <div class="driver-card">
+              <div class="driver-avatar" aria-hidden="true">👨‍✈️</div>
+              <div class="driver-info">
+                <div class="driver-name">James Wilson</div>
+                <div class="driver-rating">⭐ 4.9 · 342 rides</div>
+                <div class="driver-car" style="margin-top:4px">🚗 Silver Toyota Camry · TXY001</div>
+              </div>
+              <div class="driver-eta">
+                <div class="eta-time">7<span style="font-size:1rem">min</span></div>
+                <div class="eta-label">ETA</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:16px 0">
+            <button onclick="trackRide()" type="button"
+              style="padding:13px; background:var(--black); color:var(--white); border:none; border-radius:var(--radius-sm); font-weight:600; cursor:pointer; font-size:0.9rem">
+              📍 Track Driver
+            </button>
+            <button onclick="closeModal()" type="button"
+              style="padding:13px; background:var(--gray-100); color:var(--black); border:none; border-radius:var(--radius-sm); font-weight:600; cursor:pointer; font-size:0.9rem">
+              ✕ Close
+            </button>
+          </div>
+
+          <a href="/customer/dashboard"
+            style="display:block; font-size:0.85rem; color:var(--gray-400); text-decoration:underline; margin-top:8px">
+            View all bookings in dashboard →
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── TOAST ─── -->
+<div id="toast" class="toast" role="alert" aria-live="polite">
+  <span class="toast-icon" id="toast-icon">✅</span>
+  <span id="toast-msg">Action completed</span>
+</div>
+
+<script>
+// ─── STATE ───────────────────────────────────────────────────────
+const state = {
+  pickup: null, dropoff: null,
+  vehicleType: 'economy', date: '', time: '09:00',
+  coupon: null, discount: 0,
+  estimate: null, currentStep: 1,
+  bookingRef: null,
+};
+
+const VEHICLE_RATES = {
+  economy:  { base: 4.20, perKm: 2.19, perMin: 0.55, minFare: 10,  name: 'Economy Sedan' },
+  comfort:  { base: 6.50, perKm: 2.89, perMin: 0.70, minFare: 15,  name: 'Comfort Ride' },
+  premium:  { base: 10.00, perKm: 4.20, perMin: 1.00, minFare: 25, name: 'Premium Luxury' },
+  suv:      { base: 8.00, perKm: 3.50, perMin: 0.85, minFare: 20,  name: 'SUV / People Mover' },
+};
+
+const COUPONS = {
+  'WELCOME20': { type: 'percentage', value: 20, maxDiscount: 30, minFare: 15, label: '20% off' },
+  'SYDNEY10':  { type: 'fixed', value: 10, minFare: 25, label: '$10 off' },
+  'AIRPORT5':  { type: 'fixed', value: 5, minFare: 30, label: '$5 off' },
+};
+
+// ─── INIT ────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  const dateInput = document.getElementById('ride-date');
+  const today = new Date();
+  const yyyy = today.getFullYear();
+  const mm = String(today.getMonth()+1).padStart(2,'0');
+  const dd = String(today.getDate()).padStart(2,'0');
+  dateInput.min = `${yyyy}-${mm}-${dd}`;
+  dateInput.value = `${yyyy}-${mm}-${dd}`;
+  state.date = dateInput.value;
+
+  dateInput.addEventListener('change', e => { state.date = e.target.value; recalculate(); });
+  document.getElementById('ride-time').addEventListener('change', e => { state.time = e.target.value; recalculate(); });
+
+  document.querySelectorAll('input[name="vehicle"]').forEach(r => {
+    r.addEventListener('change', e => { state.vehicleType = e.target.value; recalculate(); });
+  });
+
+  document.querySelectorAll('input[name="payment"]').forEach(r => {
+    r.addEventListener('change', e => {
+      const isCard = e.target.value === 'card';
+      document.getElementById('card-form').style.display = isCard ? 'block' : 'none';
+      document.getElementById('digital-wallet-msg').style.display = isCard ? 'none' : 'block';
+    });
+  });
+
+  // Pre-fill a demo estimate
+  setTimeout(() => {
+    state.pickup = { address: 'Sydney CBD', lat: -33.8688, lng: 151.2093, suburb: 'Sydney' };
+    state.dropoff = { address: 'Sydney Airport (SYD)', lat: -33.9461, lng: 151.1772, suburb: 'Mascot' };
+    document.getElementById('pickup').value = 'Sydney CBD';
+    document.getElementById('dropoff').value = 'Sydney Airport (SYD)';
+    recalculate();
+    showToast('💡 Demo: Try booking a ride from Sydney CBD to the Airport!', 'info');
+  }, 800);
+});
+
+// ─── ADDRESS INPUT ────────────────────────────────────────────────
+const sydneyPlaces = [
+  { label: 'Sydney CBD — George St, Sydney NSW 2000', lat: -33.8688, lng: 151.2093, suburb: 'Sydney' },
+  { label: 'Sydney Airport (SYD) — Airport Dr, Mascot NSW 2020', lat: -33.9461, lng: 151.1772, suburb: 'Mascot' },
+  { label: 'Bondi Beach — Campbell Parade, Bondi Beach NSW 2026', lat: -33.8915, lng: 151.2767, suburb: 'Bondi Beach' },
+  { label: 'Opera House — Bennelong Point, Sydney NSW 2000', lat: -33.8568, lng: 151.2153, suburb: 'Sydney' },
+  { label: 'Circular Quay — Alfred St, Sydney NSW 2000', lat: -33.8617, lng: 151.2103, suburb: 'Sydney' },
+  { label: 'Darling Harbour — Cockle Bay, Sydney NSW 2000', lat: -33.8715, lng: 151.1985, suburb: 'Pyrmont' },
+  { label: 'Parramatta — Church St, Parramatta NSW 2150', lat: -33.8150, lng: 151.0011, suburb: 'Parramatta' },
+  { label: 'Manly — The Corso, Manly NSW 2095', lat: -33.7969, lng: 151.2855, suburb: 'Manly' },
+  { label: 'Chatswood — Victoria Ave, Chatswood NSW 2067', lat: -33.7967, lng: 151.1819, suburb: 'Chatswood' },
+  { label: 'Newtown — King St, Newtown NSW 2042', lat: -33.8975, lng: 151.1791, suburb: 'Newtown' },
+  { label: 'Surry Hills — Crown St, Surry Hills NSW 2010', lat: -33.8859, lng: 151.2124, suburb: 'Surry Hills' },
+  { label: 'Randwick — Belmore Rd, Randwick NSW 2031', lat: -33.9148, lng: 151.2406, suburb: 'Randwick' },
+];
+
+let autocompleteTimeout = null;
+let activeDropdown = null;
+
+function handleAddressInput(input, field) {
+  const val = input.value.trim();
+  clearTimeout(autocompleteTimeout);
+  removeDropdown();
+
+  if (val.length < 2) {
+    state[field] = null; recalculate(); return;
+  }
+
+  autocompleteTimeout = setTimeout(() => {
+    const matches = sydneyPlaces.filter(p =>
+      p.label.toLowerCase().includes(val.toLowerCase())
+    ).slice(0, 5);
+
+    if (matches.length === 0) return;
+    showDropdown(input, matches, field);
+  }, 150);
+}
+
+function showDropdown(input, matches, field) {
+  removeDropdown();
+  const dropdown = document.createElement('div');
+  dropdown.id = 'autocomplete-dropdown';
+  dropdown.style.cssText = `
+    position: absolute; z-index: 500;
+    background: white; border: 1.5px solid #e5e5e5;
+    border-radius: 10px; box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    width: ${input.offsetWidth}px; margin-top: 4px; overflow: hidden;
+  `;
+
+  const rect = input.getBoundingClientRect();
+  dropdown.style.top = (rect.bottom + window.scrollY + 4) + 'px';
+  dropdown.style.left = rect.left + 'px';
+  dropdown.style.position = 'fixed';
+  dropdown.style.top = (rect.bottom + 4) + 'px';
+
+  matches.forEach(place => {
+    const item = document.createElement('div');
+    item.style.cssText = `
+      padding: 12px 16px; cursor: pointer; font-size: 0.88rem;
+      display: flex; align-items: center; gap: 10px;
+      border-bottom: 1px solid #f4f4f4; transition: background 0.15s;
+    `;
+    item.innerHTML = `<span style="font-size:1rem">${field === 'pickup' ? '📍' : '🏁'}</span>
+      <div>
+        <div style="font-weight:500; color:#0a0a0a">${place.suburb}</div>
+        <div style="color:#a3a3a3; font-size:0.78rem">${place.label.split(' — ')[1] || ''}</div>
+      </div>`;
+    item.addEventListener('mouseenter', () => item.style.background = '#fafafa');
+    item.addEventListener('mouseleave', () => item.style.background = 'white');
+    item.addEventListener('click', () => {
+      input.value = place.label.split(' — ')[0];
+      state[field] = { address: place.label.split(' — ')[0], lat: place.lat, lng: place.lng, suburb: place.suburb };
+      removeDropdown();
+      recalculate();
+    });
+    dropdown.appendChild(item);
+  });
+
+  document.body.appendChild(dropdown);
+  activeDropdown = dropdown;
+  document.addEventListener('click', removeDropdownOnOutside);
+}
+
+function removeDropdown() {
+  if (activeDropdown) {
+    activeDropdown.remove();
+    activeDropdown = null;
+    document.removeEventListener('click', removeDropdownOnOutside);
+  }
+}
+
+function removeDropdownOnOutside(e) {
+  if (activeDropdown && !activeDropdown.contains(e.target)) removeDropdown();
+}
+
+// ─── FARE CALCULATION ─────────────────────────────────────────────
+function haversineDistance(lat1, lng1, lat2, lng2) {
+  const R = 6371;
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLng = (lng2 - lng1) * Math.PI / 180;
+  const a = Math.sin(dLat/2)**2 + Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLng/2)**2;
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+}
+
+function recalculate() {
+  if (!state.pickup || !state.dropoff) {
+    document.getElementById('fare-estimate').style.display = 'none';
+    return;
+  }
+
+  const distKm = haversineDistance(state.pickup.lat, state.pickup.lng, state.dropoff.lat, state.dropoff.lng);
+  const roadKm = distKm * 1.35; // Approximate road factor
+  const durationMin = Math.round(roadKm * 2.5); // ~24 km/h avg Sydney
+
+  const rates = VEHICLE_RATES[state.vehicleType];
+  const baseFare = rates.base;
+  const distFare = roadKm * rates.perKm;
+  const timeFare = durationMin * rates.perMin;
+
+  // Surcharges
+  let surcharge = 0;
+  let surchargeLabel = '';
+  const isAirport = state.dropoff.suburb === 'Mascot' || state.pickup.suburb === 'Mascot';
+  const hour = parseInt(state.time.split(':')[0]);
+  const isNight = hour >= 23 || hour < 5;
+
+  if (isAirport) { surcharge += 5.50; surchargeLabel += 'Airport +$5.50 '; }
+  
+  let surgeMultiplier = 1;
+  if (isNight) { surgeMultiplier = 1.20; surchargeLabel += 'Late night ×1.2'; }
+
+  let subtotal = (baseFare + distFare + timeFare) * surgeMultiplier + surcharge;
+  let total = Math.max(subtotal, rates.minFare);
+
+  // Coupon
+  let discount = 0;
+  if (state.coupon) {
+    const c = state.coupon;
+    if (total >= (c.minFare || 0)) {
+      discount = c.type === 'percentage' ? (total * c.value / 100) : c.value;
+      if (c.maxDiscount) discount = Math.min(discount, c.maxDiscount);
+      discount = Math.min(discount, total);
+    }
+  }
+
+  state.estimate = {
+    distKm: roadKm, durationMin, baseFare, distFare, timeFare,
+    surcharge, surgeMultiplier, discount, total: total - discount
+  };
+
+  // Update UI
+  const e = state.estimate;
+  document.getElementById('est-base').textContent = `$${e.baseFare.toFixed(2)}`;
+  document.getElementById('est-distance-label').textContent = `Distance (${e.distKm.toFixed(1)} km)`;
+  document.getElementById('est-distance').textContent = `$${e.distFare.toFixed(2)}`;
+  document.getElementById('est-time-label').textContent = `Time (${e.durationMin} min)`;
+  document.getElementById('est-time').textContent = `$${e.timeFare.toFixed(2)}`;
+
+  const surRow = document.getElementById('est-surcharge-row');
+  if (e.surcharge > 0 || e.surgeMultiplier > 1) {
+    surRow.style.display = 'flex';
+    document.getElementById('est-surcharge-label').textContent = surchargeLabel.trim() || 'Surcharge';
+    document.getElementById('est-surcharge').textContent = `$${e.surcharge.toFixed(2)}`;
+  } else { surRow.style.display = 'none'; }
+
+  const discRow = document.getElementById('est-discount-row');
+  if (e.discount > 0) {
+    discRow.style.display = 'flex';
+    document.getElementById('est-discount').textContent = `-$${e.discount.toFixed(2)}`;
+  } else { discRow.style.display = 'none'; }
+
+  document.getElementById('est-total').textContent = `$${e.total.toFixed(2)}`;
+  document.getElementById('fare-estimate').style.display = 'block';
+}
+
+// ─── COUPON ───────────────────────────────────────────────────────
+function applyCoupon() {
+  const code = document.getElementById('coupon-code').value.toUpperCase().trim();
+  if (!code) { showToast('Please enter a promo code.', 'warn'); return; }
+
+  const coupon = COUPONS[code];
+  if (!coupon) { showToast('❌ Invalid promo code.', 'error'); return; }
+
+  if (!state.estimate) { showToast('Please enter pickup & dropoff first.', 'warn'); return; }
+  if (state.estimate.total < (coupon.minFare || 0)) {
+    showToast(`This code requires a minimum fare of $${coupon.minFare}.`, 'warn'); return;
+  }
+
+  state.coupon = coupon;
+  state.discount = coupon.value;
+  recalculate();
+  showToast(`🎉 Promo applied! ${coupon.label}`, 'success');
+}
+
+// ─── MODAL FLOW ───────────────────────────────────────────────────
+function openBookingModal() {
+  if (!state.pickup) { showToast('Please enter your pickup location.', 'warn'); return; }
+  if (!state.dropoff) { showToast('Please enter your drop-off location.', 'warn'); return; }
+
+  populateSummary();
+  document.getElementById('booking-modal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+  goToStep(1);
+}
+
+function closeModal() {
+  document.getElementById('booking-modal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function closeOnOverlay(e) {
+  if (e.target === document.getElementById('booking-modal')) closeModal();
+}
+
+function goToStep(step) {
+  document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById(`step-${step}`).classList.add('active');
+  document.querySelectorAll('.progress-step').forEach((s, i) => {
+    s.classList.toggle('done', i < step);
+  });
+  state.currentStep = step;
+
+  if (step === 2) updatePaymentSummary();
+}
+
+function populateSummary() {
+  const e = state.estimate;
+  const rate = VEHICLE_RATES[state.vehicleType];
+  const dateStr = state.date ? new Date(state.date + 'T12:00').toLocaleDateString('en-AU', { weekday:'short', day:'numeric', month:'short' }) : 'Today';
+
+  document.getElementById('sum-pickup').textContent = state.pickup.address;
+  document.getElementById('sum-dropoff').textContent = state.dropoff.address;
+  document.getElementById('sum-datetime').textContent = `${dateStr}, ${formatTime(state.time)}`;
+  document.getElementById('sum-vehicle').textContent = rate.name;
+  document.getElementById('sum-distance').textContent = e ? `${e.distKm.toFixed(1)} km` : 'Calculating...';
+  document.getElementById('sum-duration').textContent = e ? `${e.durationMin} min` : 'Calculating...';
+  document.getElementById('sum-fare').textContent = e ? `$${e.total.toFixed(2)}` : 'Estimating...';
+}
+
+function updatePaymentSummary() {
+  const e = state.estimate;
+  const babySeat = document.getElementById('baby-seat').checked;
+  const base = e ? e.total : 0;
+  const total = base + (babySeat ? 5 : 0);
+
+  document.getElementById('pay-fare').textContent = `$${base.toFixed(2)}`;
+  document.getElementById('pay-baby-row').style.display = babySeat ? 'flex' : 'none';
+
+  if (e && e.discount > 0) {
+    document.getElementById('pay-discount-row').style.display = 'flex';
+    document.getElementById('pay-discount').textContent = `-$${e.discount.toFixed(2)}`;
+  }
+
+  document.getElementById('pay-total').textContent = `$${total.toFixed(2)}`;
+}
+
+function confirmBooking() {
+  const btn = document.getElementById('confirm-btn');
+  const name = document.getElementById('card-name').value;
+  const num = document.getElementById('card-number').value;
+  const exp = document.getElementById('card-expiry').value;
+  const cvc = document.getElementById('card-cvc').value;
+  const pm = document.querySelector('input[name="payment"]:checked').value;
+
+  if (pm === 'card') {
+    if (!name.trim()) { showToast('Please enter the name on your card.', 'warn'); return; }
+    if (num.replace(/\s/g,'').length < 16) { showToast('Please enter a valid card number.', 'warn'); return; }
+    if (!exp.trim() || exp.length < 5) { showToast('Please enter card expiry.', 'warn'); return; }
+    if (!cvc || cvc.length < 3) { showToast('Please enter your CVC.', 'warn'); return; }
+  }
+
+  btn.textContent = '⏳ Processing...';
+  btn.disabled = true;
+
+  // Simulate payment processing
+  setTimeout(() => {
+    const refNum = 'SYD-2024-' + String(Math.floor(Math.random() * 99999)).padStart(6,'0');
+    document.getElementById('booking-ref-num').textContent = refNum;
+    state.bookingRef = refNum;
+    goToStep(3);
+    btn.textContent = 'Confirm & Pay 🔒';
+    btn.disabled = false;
+    showToast('🎉 Booking confirmed! SMS & email sent.', 'success');
+  }, 2000);
+}
+
+function trackRide() {
+  showToast('🚖 Opening live tracking...', 'info');
+  setTimeout(() => closeModal(), 1500);
+}
+
+// ─── UTILS ────────────────────────────────────────────────────────
+function formatTime(t) {
+  const [h, m] = t.split(':').map(Number);
+  const ampm = h >= 12 ? 'PM' : 'AM';
+  const h12 = h % 12 || 12;
+  return `${h12}:${String(m).padStart(2,'0')} ${ampm}`;
+}
+
+function formatCardNumber(input) {
+  let val = input.value.replace(/\D/g,'').slice(0,16);
+  input.value = val.match(/.{1,4}/g)?.join(' ') || val;
+}
+
+function formatExpiry(input) {
+  let val = input.value.replace(/\D/g,'').slice(0,4);
+  if (val.length >= 2) val = val.slice(0,2) + ' / ' + val.slice(2);
+  input.value = val;
+}
+
+function showToast(msg, type = 'success') {
+  const toast = document.getElementById('toast');
+  const icon = document.getElementById('toast-icon');
+  const msgEl = document.getElementById('toast-msg');
+  const icons = { success: '✅', error: '❌', warn: '⚠️', info: 'ℹ️' };
+
+  icon.textContent = icons[type] || '✅';
+  msgEl.textContent = msg;
+  toast.style.background = type === 'error' ? '#dc2626' : type === 'warn' ? '#d97706' : '#0a0a0a';
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 3500);
+}
+
+function scrollToBooking(e) {
+  e.preventDefault();
+  document.getElementById('booking-hero').scrollIntoView({ behavior: 'smooth' });
+  setTimeout(() => document.getElementById('pickup').focus(), 600);
+}
+
+function scrollAndFill(e) {
+  e.preventDefault();
+  scrollToBooking(e);
+  setTimeout(() => {
+    document.getElementById('coupon-code').value = 'WELCOME20';
+    showToast('💡 WELCOME20 pre-filled! 20% off your first ride.', 'success');
+  }, 800);
+}
+
+// ─── KEYBOARD ────────────────────────────────────────────────────
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal();
+});
+
+// ─── SCROLL ANIMATIONS ───────────────────────────────────────────
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.animation = 'fadeUp 0.6s ease both';
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.feature-card, .fleet-card, .step, .testimonial-card').forEach(el => {
+  el.style.opacity = '0';
+  observer.observe(el);
+});
+</script>
+
+</body>
+</html>
